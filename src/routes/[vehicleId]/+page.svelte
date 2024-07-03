@@ -1,12 +1,17 @@
 <script lang="ts">
   import type { PageData } from "./$types.js";
   export let data: PageData;
+  console.log(data.vehicle.purchaseDate);
   const formatDate = (dateStr: string) => {
-    let fDate = new Date(dateStr);
-    const month = fDate.toLocaleString("default", { month: "long" });
-    let date = fDate.getDate();
-    let year = fDate.getFullYear();
-    return `${date} ${month} ${year}`;
+    if (dateStr !== "") {
+      let fDate = new Date(dateStr);
+      const month = fDate.toLocaleString("default", { month: "long" });
+      let date = fDate.getDate();
+      let year = fDate.getFullYear();
+      return `${date} ${month} ${year}`;
+    } else {
+      return "";
+    }
   };
 </script>
 
@@ -23,7 +28,7 @@
   </header>
   <section class="p-4">
     <div>Cost: ${data.vehicle.cost}</div>
-    <div>Purchase Date: {data.vehicle.purchaseDate}</div>
+    <div>Purchase Date: {formatDate(data.vehicle.purchaseDate)}</div>
     <div>Miles: {data.vehicle.miles}</div>
   </section>
 
