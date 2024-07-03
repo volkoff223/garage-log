@@ -17,7 +17,11 @@ export const load: PageServerLoad = async ({ params }) => {
 };
 
 export const actions = {
-  default: async ({ request, params }) => {
+  delete: async ({ params }) => {
+    await pb.collection("vehicles").delete(params.slug);
+    throw redirect(303, "/");
+  },
+  update: async ({ request, params }) => {
     const data = await request.formData();
     const vehicleInfo = {
       year: data.get("year"),

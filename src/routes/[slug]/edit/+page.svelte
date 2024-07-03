@@ -10,7 +10,7 @@
     </h2>
   </header>
   <section class="p-4">
-    <form method="POST">
+    <form action="?/update" method="POST">
       <label class="label">
         <span>Year</span>
         <input name="year" class="input" type="text" value={data.year} />
@@ -41,6 +41,9 @@
         <input name="miles" class="input" type="text" value={data.miles} />
       </label>
       <button class="btn variant-filled-primary">Save</button>
+      <form action="?/delete" method="POST">
+        <button class="btn variant-soft-error mt-8">Delete vehicle</button>
+      </form>
     </form>
   </section>
 </div>
