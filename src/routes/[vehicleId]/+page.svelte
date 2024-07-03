@@ -32,27 +32,33 @@
     <div>Miles: {data.vehicle.miles}</div>
   </section>
 
-  <div class="table-container">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Maintenance</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each data.maintLog as row, i}
+  {#if data.maintLog.length === 0}
+    You have not completed any maintenance on this vehicle.
+  {:else}
+    <div class="table-container">
+      <table class="table table-hover">
+        <thead>
           <tr>
-            <a href="/log/{data.maintLog[i].id}">
-              <td>{row.title}</td>
-            </a>
-            <td>{formatDate(row.created)}</td>
+            <th>Maintenance</th>
+            <th>Date</th>
           </tr>
-        {/each}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {#each data.maintLog as row, i}
+            <tr>
+              <a href="/log/{data.maintLog[i].id}">
+                <td>{row.title}</td>
+              </a>
+              <td>{formatDate(row.created)}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+  {/if}
+  <div class="mt-4">
     <a href="/{data.vehicle.id}/addLog">
-      <button class="btn">+Maintenance</button>
+      <button class="btn btn-sm variant-soft-secondary">+Maintenance</button>
     </a>
   </div>
 </div>
