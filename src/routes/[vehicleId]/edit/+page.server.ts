@@ -7,7 +7,7 @@ import PocketBase from "pocketbase";
 const pb = new PocketBase("https://garage-log.pockethost.io");
 
 export const load: PageServerLoad = async ({ params }) => {
-  const vehicle = await pb.collection("vehicles").getOne(params.slug, {});
+  const vehicle = await pb.collection("vehicles").getOne(params.vehicleId, {});
 
   if (vehicle) {
     return vehicle;
@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 export const actions = {
   delete: async ({ params }) => {
-    await pb.collection("vehicles").delete(params.slug);
+    await pb.collection("vehicles").delete(params.vehicleId);
     throw redirect(303, "/");
   },
   update: async ({ request, params }) => {
@@ -34,7 +34,7 @@ export const actions = {
 
     const record = await pb
       .collection("vehicles")
-      .update(params.slug, vehicleInfo);
-    throw redirect(303, `/${params.slug}`);
+      .update(params.vehicleId, vehicleInfo);
+    throw redirect(303, `/${params.vehicleId}`);
   },
 } satisfies Actions;

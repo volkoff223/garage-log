@@ -38,7 +38,9 @@
       <tbody>
         {#each data.maintLog as row, i}
           <tr>
-            <td>{row.title}</td>
+            <a href="/log/{data.maintLog[i].id}">
+              <td>{row.title}</td>
+            </a>
             <td>{formatDate(row.created)}</td>
           </tr>
         {/each}

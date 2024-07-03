@@ -11,10 +11,9 @@ export const actions = {
     const log = {
       title: data.get("title"),
       description: data.get("description"),
-      vehicle: params.slug,
+      vehicle: params.vehicleId,
     };
-    console.log(log);
     const record = await pb.collection("logs").create(log);
-    throw redirect(303, `/${params.slug}`);
+    throw redirect(303, `/${params.vehicleId}`);
   },
 } satisfies Actions;

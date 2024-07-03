@@ -6,9 +6,9 @@ import PocketBase from "pocketbase";
 const pb = new PocketBase("https://garage-log.pockethost.io");
 
 export const load: PageServerLoad = async ({ params }) => {
-  const vehicle = await pb.collection("vehicles").getOne(params.slug, {});
+  const vehicle = await pb.collection("vehicles").getOne(params.vehicleId, {});
   const maintLog = await pb.collection("logs").getFullList({
-    filter: `vehicle="${params.slug}"`,
+    filter: `vehicle="${params.vehicleId}"`,
   });
 
   if (vehicle) {
